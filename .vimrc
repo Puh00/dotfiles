@@ -28,10 +28,6 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
- " Commands
-" Opens config file for Alacritty
-:command Alcrit e C:\Users\alexp\AppData\Roaming\alacritty\alacritty.yml 
-
  " Remap <esc> key
 :imap jk <Esc>
 

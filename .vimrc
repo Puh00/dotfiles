@@ -1,3 +1,4 @@
+set nocompatible
 "##################################################
 " Mac installation
 "##################################################
@@ -8,6 +9,7 @@ endif
 
 " Runtimepath 
 set rtp +=~/.vim
+set rtp+=/usr/local/opt/fzf
 
 " Plugins
 call plug#begin('~/.vim/plugged')
@@ -25,6 +27,9 @@ Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
+" Automatically show Vim's autocomplete menu while typing
+Plug 'vim-scripts/AutoComplPop'
 
 call plug#end()
 
@@ -56,7 +61,6 @@ set laststatus=2
 set showtabline=2
 set background=dark
 colorscheme purify
-set number relativenumber
 set ignorecase
 set mouse=a " Else can't scroll on mac
 
@@ -66,27 +70,26 @@ set tabstop=4 " show existing tab with 4 spaces width
 set shiftwidth=4 " when indenting with '>', use 4 spaces width
 set expandtab " On pressing tab, insert 4 spaces
 
+" Hybrid line numbers
+set number relativenumber
 set nu rnu
-set clipboard=unnamed
-set ruler
+
+set clipboard=unnamed " Point to the system clipboard
+set ruler " Shows line and column position at bottom right corner
 set showcmd
-set noswapfile
-set noshowmode
-set omnifunc=syntaxcomplete#Complete
+set noswapfile " Disable temp files
+set noshowmode " Disable duplicate mode display at bottom
+"set omnifunc=syntaxcomplete#Complete " Activate via C-X,C-O
 
 set backspace=indent,eol,start " let backspace delete over lines
 set autoindent " enable auto indentation of lines
 set smartindent " allow vim to best-effort guess the indentation
 set pastetoggle=<F2> " enable paste mode
 
-set wildmenu "graphical auto complete menu
 set lazyredraw "redraws the screne when it needs to
 set showmatch "highlights matching brackets
 set incsearch "search as characters are entered
 set hlsearch "highlights matching searcher
-
- " Autocompletion
-set wildmode=longest,list,full
 
  " Fix splitting
 set splitbelow splitright
@@ -101,7 +104,7 @@ highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
 highlight CursorColumn ctermbg=Yellow cterm=bold guibg=#2b2b2b
 
  " Fzf
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-i> :Files<CR>
 nnoremap <silent> <C-g> :GFiles<CR>
 nnoremap <silent> <C-o> :Buffers<CR>
 nnoremap <silent> <C-f> :Rg!
@@ -116,4 +119,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Completion
+"" set dictionary+=/usr/share/dict/words " Dictionary, slow on laptop
+"set complete+=k
+"set completeopt=menuone,noinsert
+set shortmess+=c                         " Removes unnecessary information
+nnoremap __ :setlocal spell!<return>     " Toggle highlight misspelled words
 

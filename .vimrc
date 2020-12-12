@@ -14,13 +14,13 @@ set rtp+=/usr/local/opt/fzf
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'           " Starting screen
 Plug 'itchyny/lightline.vim'
 Plug 'rafi/awesome-vim-colorschemes'
 
-Plug 'preservim/nerdtree'
-Plug 'sheerun/vim-polyglot'
-Plug 'Raimondi/delimitMate'
+Plug 'preservim/nerdtree'           " File explorer
+Plug 'sheerun/vim-polyglot'         " Syntax highlighting
+Plug 'Raimondi/delimitMate'         " Pair closing brackets
 Plug 'vim-syntastic/syntastic'
 Plug 'ervandew/supertab'
 
@@ -28,8 +28,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Automatically show Vim's autocomplete menu while typing
-Plug 'vim-scripts/AutoComplPop'
+" Intellisense
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -126,4 +126,11 @@ nnoremap <C-H> <C-W><C-H>
 "set completeopt=menuone,noinsert
 set shortmess+=c                         " Removes unnecessary information
 nnoremap __ :setlocal spell!<return>     " Toggle highlight misspelled words
+
+" Sourcing
+source $HOME/.config/nvim/plug-config/coc.vim
+
+" coc-vim sets it to 2, 
+" comment if it bugs coc
+set cmdheight=1
 

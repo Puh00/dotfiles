@@ -1,3 +1,4 @@
+
 set nocompatible
 "##################################################
 " Mac installation
@@ -24,6 +25,10 @@ Plug 'Raimondi/delimitMate'         " Pair closing brackets
 Plug 'vim-syntastic/syntastic'
 Plug 'ervandew/supertab'
 
+Plug 'google/vim-maktaba'           " Format code according to Google's coding style
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -32,6 +37,21 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
+
+call glaive#Install()
+" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+Glaive codefmt plugin[mappings]
+Glaive codefmt google_java_executable="java -jar /Users/nam/.config/formatters/google-java-format-1.9-all-deps.jar"
+
+"##################################################
+"# Code format                                    #
+"##################################################
+
+noremap <C-X> :FormatCode<CR>
+
+"##################################################
+"# General                                        #
+"##################################################
 
  " Remap <esc> key
 :imap jk <Esc>
@@ -43,7 +63,7 @@ abbr com /**<CR><CR>/<Up>
 
  " lightline colorscheme
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'purify',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -64,11 +84,14 @@ colorscheme purify
 set ignorecase
 set mouse=a " Else can't scroll on mac
 
- " Tabs
+ " Indentation (tabs)
 filetype plugin indent on
-set tabstop=4 " show existing tab with 4 spaces width
-set shiftwidth=4 " when indenting with '>', use 4 spaces width
-set expandtab " On pressing tab, insert 4 spaces
+set tabstop=2 " show existing tab with 2 spaces width
+set shiftwidth=2 " when indenting with '>', use 2 spaces width
+set expandtab " On pressing tab, insert 2 spaces
+set backspace=indent,eol,start " let backspace delete over lines
+set autoindent " enable auto indentation of lines
+set smartindent " allow vim to best-effort guess the indentation
 
 " Hybrid line numbers
 set number relativenumber
@@ -81,11 +104,7 @@ set noswapfile " Disable temp files
 set noshowmode " Disable duplicate mode display at bottom
 "set omnifunc=syntaxcomplete#Complete " Activate via C-X,C-O
 
-set backspace=indent,eol,start " let backspace delete over lines
-set autoindent " enable auto indentation of lines
-set smartindent " allow vim to best-effort guess the indentation
 set pastetoggle=<F2> " enable paste mode
-
 set lazyredraw "redraws the screne when it needs to
 set showmatch "highlights matching brackets
 set incsearch "search as characters are entered
@@ -129,8 +148,4 @@ nnoremap __ :setlocal spell!<return>     " Toggle highlight misspelled words
 
 " Sourcing
 source $HOME/.config/nvim/plug-config/coc.vim
-
-" coc-vim sets it to 2, 
-" comment if it bugs coc
-set cmdheight=1
 

@@ -1,4 +1,3 @@
-
 set nocompatible
 "##################################################
 " Mac installation
@@ -58,7 +57,6 @@ noremap <C-X> :FormatCode<CR>
 
  " Abbreviations
 abbr psvm public static void main(String[] args){<CR>}<esc>O
-abbr sysout System.out.println("");<esc>2hi
 abbr com /**<CR><CR>/<Up>
 
  " lightline colorscheme

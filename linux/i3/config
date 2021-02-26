@@ -107,10 +107,11 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: "
+
+set $ws1 "1: "
 set $ws2 "2: "
-set $ws3 "3"
-set $ws4 "4"
+set $ws3 "3: "
+set $ws4 "4: "
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -339,7 +340,8 @@ bar {
 }
 
 # Display Wallpaper
-exec_always feh --bg-fil /home/manlin/Pictures/wallpaper.jpg
+# --bg-fill/scale/max
+exec_always feh --bg-max /home/manlin/Pictures/wallpaper.jpg
 
 # Keybinding for i3lock
 bindsym $mod+shift+x exec i3lock #--color "$bg-color"
@@ -347,6 +349,9 @@ bindsym $mod+shift+x exec i3lock #--color "$bg-color"
 # Assign Programs to Workspaces
 #exec firefox # uncomment to launch firefox at startup
 #assign [class="firefox"] $ws2 #assign firefox to ws2
+
+exec Thunar
+assign [class="Thunar"] $ws1
 
 # Windom Compositor
 exec_always picom -f

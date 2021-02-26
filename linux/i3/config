@@ -192,7 +192,7 @@ set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 gaps inner 10
-gaps outer 15
+gaps outer 3
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"

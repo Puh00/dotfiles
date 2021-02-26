@@ -38,6 +38,7 @@ set cmdheight=2 "more space for displaying messages
 syntax on 
 highlight Normal guibg=none
 colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE "transparent
 
 "###############################
 "# REMAPS

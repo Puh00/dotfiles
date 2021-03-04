@@ -352,6 +352,7 @@ bindsym $mod+shift+x exec i3lock #--color "$bg-color"
 
 exec Thunar
 assign [class="Thunar"] $ws1
+assign [class="zoom"] $ws10
 
 # Windom Compositor
 exec_always picom -f

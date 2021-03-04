@@ -4,7 +4,20 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'gruvbox-community/gruvbox'
+Plug 'itchyny/lightline.vim'
+" Intellisense
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Formatter
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+" Git
+Plug 'tpope/vim-fugitive'
 call plug#end()
+
+call glaive#Install()
+Glaive codefmt plugin[mappings]
+Glaive codefmt google_java_executable="java -jar /home/manlin/.config/formatters/google-java-format-1.9-all-deps.jar"
 
 "###############################
 "# GENERAL
@@ -22,12 +35,13 @@ set nu rnu
 set hidden
 set nowrap "wrapping the text if no more screen space
 
+set clipboard+=unnamedplus
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
 
-"set noshowmode "add when lightline is added 
+set noshowmode "redundent due to lightline 
 set incsearch
 set scrolloff=8
 set signcolumn=yes "for error messages or e.g. git
@@ -39,6 +53,12 @@ syntax on
 highlight Normal guibg=none
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE "transparent
+"###############################
+"# Lightline
+"###############################
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ }
 
 "###############################
 "# REMAPS
@@ -47,5 +67,9 @@ hi Normal guibg=NONE ctermbg=NONE "transparent
 nnoremap // :noh<return>
 
 let mapleader = " "
-nnoremap <leader>ps :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>fg :lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>ff :lua require('telescope.builtin').find_files()<CR>
+nnoremap <leader>fb :lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>fmt :FormatCode<CR>
 
+source $HOME/.config/nvim/coc.vim

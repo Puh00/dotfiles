@@ -13,6 +13,10 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 " Git
 Plug 'tpope/vim-fugitive'
+" git diff
+Plug 'mhinz/vim-signify'
+" non-git diff
+Plug 'jmcantrell/vim-diffchanges'
 call plug#end()
 
 call glaive#Install()
@@ -45,7 +49,7 @@ set noshowmode "redundent due to lightline
 set incsearch
 set scrolloff=8
 set signcolumn=yes "for error messages or e.g. git
-set colorcolumn=80
+set colorcolumn=100
 set cmdheight=2 "more space for displaying messages
 
 "--| appearance
@@ -71,5 +75,8 @@ nnoremap <leader>fg :lua require('telescope.builtin').git_files()<CR>
 nnoremap <leader>ff :lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>fb :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>fmt :FormatCode<CR>
+nnoremap <leader>ip :CocCommand java.action.organizeImports 
+nnoremap <leader>df :DiffChangesDiffToggle<CR>
 
 source $HOME/.config/nvim/coc.vim
+source $HOME/.config/nvim/signify.vim
